@@ -3,9 +3,9 @@
 [![PyPI - Django Version](https://img.shields.io/pypi/djversions/djangorestframework.svg?style=flat-square)
 ](https://djangoproject.com)
 
-Web application built by django framework.
+Web application built by django framework.[Visit my website](https://cotp.pythonanywhere.com/)
 
-## Intro
+##
 There some techniques have been used in my project
   * The Model layer
   * The View layer
