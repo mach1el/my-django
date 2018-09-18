@@ -1,0 +1,160 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block content %}
+     <section class="no-mb relative-positioned">
+        <!--
+        *** JUMBOTRON ***
+        _________________________________________________________
+        -->
+        <div style="background: url('/static/img/photogrid.jpg') center center repeat; background-size: cover;" class="jumbotron relative-positioned color-white text-md-center">
+          <div class="dark-mask mask-primary"></div>
+          <div class="container">
+            <div class="row mb-small">
+              <div class="col-md-12 text-center">
+                <h1 class="text-uppercase">PhantomSEC is great</h1>
+                <h2 class="text-uppercase">Last week more than 100 companies signed up to help them in their projects.</h2>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6 mb-small"><img src="{% static 'img/template-mac.png' %}" alt="..." class="img-fluid"></div>
+              <div class="col-md-6 text-center-sm">
+                <p class="text-uppercase text-bold">We make your security improve.<br>Your network, system,software,<br>We have covered everything.</p>
+                <p class="no-letter-spacing">See our current packages comparison<br>to choose the right one for you.</p>
+                <p><a href="#packages" class="scroll-to btn btn-template-outlined-white">See packages</a></p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- *** JUMBOTRON END ***-->
+      </section>
+      <section class="bar bg-gray no-mb padding-big text-md-center">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-6">
+              <h2 class="text-uppercase">Everything you need</h2>
+              <p class="lead mb-small">We can offer it.</p>
+              <p class="mb-small">We have prepared literally <strong>we can handle solve to your all problems which may can affect to your system.We analyze,assessment and give you the best solutions.</strong></p>
+            <!--  <p><a href="#" class="btn btn-template-main">Read more</a></p> -->
+            </div>
+            <div class="col-md-6 text-center"><img src="{% static 'img/template-easy-customize.png' %}" alt="" class="img-fluid"></div>
+          </div>
+        </div>
+      </section>
+      <section class="bar no-mb color-white padding-big text-md-center bg-primary">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-6 text-center"><img src="{% static 'img/template-easy-code.png' %}" alt="" class="img-fluid"></div>
+            <div class="col-md-6">
+              <h2 class="text-uppercase">Clean reports & documents</h2>
+              <p class="lead mb-small">We made our best to help you</p>
+              <p class="mb-small">Our team have high participate skill and high resolve skill to make your job fast and get good result  </p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="bar bg-gray no-mb padding-big text-center-sm">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-6">
+              <h2 class="text-uppercase">Easy to pick up our service</h2>
+              <p class="mb-small">All our services are flexible to our customers </strong>, many <strong>not only on security field</strong> we <strong>work on all</strong> IT fields,so we can offer the best response your requests</p>
+            </div>
+            <div class="col-md-6 text-center"><img src="{% static 'img/template-easy-customize.png' %}" alt="" class="img-fluid"></div>
+          </div>
+        </div>
+      </section>
+      <section id="packages" class="bar no-mb">
+        <div data-animate="fadeInUp" class="container">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="heading text-center">
+                <h2>Packages we offer</h2>
+              </div>
+              <p class="lead">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
+              <!-- Packages Start-->
+              <div class="row packages">
+                <div class="col-md-3">
+                  <div class="package">
+                    <div class="package-header light-gray">
+                      <h5>Basic</h5>
+                    </div>
+                    <div class="price">
+                      <div class="price-container d-flex align-items-end justify-content-center">
+                        <h4 class="h1"><span class="currency">$</span>7</h4><span class="period">/ month</span>
+                      </div>
+                    </div>
+                    <ul class="list-unstyled">
+                      <li><i class="fa fa-check"></i>100GB Storage</li>
+                      <li><i class="fa fa-check"></i>Own config file</li>
+                      <li><i class="fa fa-times"></i>Sharing Tools</li>
+                      <li><i class="fa fa-times"></i>Auto Backup</li>
+                      <li><i class="fa fa-times"></i>Extended Security</li>
+                    </ul><a href="#" class="btn btn-template-outlined">Sign Up</a>
+                  </div>
+                </div>
+                <!-- / END FIRST PACKAGE-->
+                <div class="col-md-3">
+                  <div class="package">
+                    <div class="package-header light-gray">
+                      <h5>Standard</h5>
+                    </div>
+                    <div class="price">
+                      <div class="price-container d-flex align-items-end justify-content-center">
+                        <h4 class="h1"><span class="currency">$</span>21</h4><span class="period">/ month</span>
+                      </div>
+                    </div>
+                    <ul class="list-unstyled">
+                      <li><i class="fa fa-check"></i>100GB Storage</li>
+                      <li><i class="fa fa-check"></i>Own config file</li>
+                      <li><i class="fa fa-times"></i>Sharing Tools</li>
+                      <li><i class="fa fa-times"></i>Auto Backup</li>
+                      <li><i class="fa fa-times"></i>Extended Security</li>
+                    </ul><a href="#" class="btn btn-template-outlined">Sign Up</a>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="best-value">
+                    <div class="package">
+                      <div class="package-header bg-primary color-white">
+                        <div class="content">
+                          <h5>Premium</h5>
+                          <div class="meta-text">Best Value</div>
+                        </div>
+                      </div>
+                      <div class="price-container d-flex align-items-end justify-content-center">
+                        <h4 class="h1"><span class="currency">$</span>53</h4><span class="period">/ month</span>
+                      </div>
+                      <ul class="list-unstyled">
+                        <li><i class="fa fa-check"></i>100GB Storage</li>
+                        <li><i class="fa fa-check"></i>Own config file</li>
+                        <li><i class="fa fa-times"></i>Sharing Tools</li>
+                        <li><i class="fa fa-times"></i>Auto Backup</li>
+                        <li><i class="fa fa-times"></i>Extended Security</li>
+                      </ul><a href="#" class="btn btn-template-outlined">Sign Up</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="package">
+                    <div class="package-header light-gray">
+                      <h5>Ultimate</h5>
+                    </div>
+                    <div class="price-container d-flex align-items-end justify-content-center">
+                      <h4 class="h1"><span class="currency">$</span>99</h4><span class="period">/ month</span>
+                    </div>
+                    <ul class="list-unstyled">
+                      <li><i class="fa fa-check"></i>100GB Storage</li>
+                      <li><i class="fa fa-check"></i>Own config file</li>
+                      <li><i class="fa fa-times"></i>Sharing Tools</li>
+                      <li><i class="fa fa-times"></i>Auto Backup</li>
+                      <li><i class="fa fa-times"></i>Extended Security</li>
+                    </ul><a href="#" class="btn btn-template-outlined">Sign Up</a>
+                  </div>
+                </div>
+              </div>
+              <!-- Packages End-->
+            </div>
+          </div>
+        </div>
+      </section>
+{% endblock %}

@@ -1,0 +1,47 @@
+<div id="content">
+        <div class="container">
+          <div class="row bar">
+            <div id="basket" class="col-lg-9">
+              <div class="box mt-0 pb-0 no-horizontal-padding">
+                  <div class="table-responsive">
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th colspan="2">Product</th>
+                          <th>Quantity</th>
+                          <th>Unit price</th>
+                          <th>Discount</th>
+                          <th colspan="2">Total</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                      	{% for item in cart %}
+                      	<form method="POST" action="{% url 'cart_update' item.product.pk %}" name="cart_update">
+                      		{% csrf_token %}
+                        <tr>
+                          <td><a href="{% url 'product_detail' item.product.pk %}"><img src="{{ item.product.image.url }}" alt="" class="img-fluid"></a></td>
+                          <td><a href="{% url 'product_detail' item.product.pk %}">{{ cart.product.name }}</a></td>
+                          <td>
+                            <input type="number" value="{{ item.quantity }}" class="form-control" name="quantity">
+                            <input type="hidden" value="{{ item.unit_price }}" class="form-control" name="unit_price">
+                          </td>
+                          <td>${{ item.unit_price }}</td>
+                          <td>$0.00</td>
+                          <td>${{ item.total_price }}</td>
+                        </tr>
+                        {% endfor %}
+                		</form>
+                      </tbody>
+                      <tfoot>
+                        <tr>
+                          <th colspan="5">Total</th>
+                          <th colspan="2">${{ cart.summary }}</th>
+                        </tr>
+                      </tfoot>
+                    </table>
+                  </div>
+              </div>
+            </div>
+        </div>
+    </div>
+</div>

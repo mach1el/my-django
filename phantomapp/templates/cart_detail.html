@@ -1,0 +1,141 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block content %}
+      <div id="heading-breadcrumbs">
+        <div class="container">
+          <div class="row d-flex align-items-center flex-wrap">
+            <div class="col-md-7">
+              <h1 class="h2">Shopping Cart</h1>
+            </div>
+            <div class="col-md-5">
+              <ul class="breadcrumb d-flex justify-content-end">
+                <li class="breadcrumb-item"><a href="{% url 'index' %}">Home</a></li>
+                <li class="breadcrumb-item active">Shopping Cart</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="content">
+        <div class="container">
+          <div class="row bar">
+            <div class="col-lg-12">
+              <p class="text-muted lead">You currently have {{ cart.count }} item(s) in your cart.</p>
+            </div>
+            <div id="basket" class="col-lg-9">
+              <div class="box mt-0 pb-0 no-horizontal-padding">
+                  <div class="table-responsive">
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th colspan="2">Product</th>
+                          <th>Quantity</th>
+                          <th>Unit price</th>
+                          <th>Discount</th>
+                          <th colspan="2">Total</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                      	{% for item in cart %}
+                      	<form method="POST" action="{% url 'cart_update' item.product.pk %}" name="cart_update">
+                      		{% csrf_token %}
+                        <tr>
+                          <td><a href="{% url 'product_detail' item.product.pk %}"><img src="{{ item.product.image.url }}" alt="" class="img-fluid"></a></td>
+                          <td><a href="{% url 'product_detail' item.product.pk %}">{{ cart.product.name }}</a></td>
+                          <td>
+                            <input type="number" value="{{ item.quantity }}" class="form-control" name="quantity">
+                            <input type="hidden" value="{{ item.unit_price }}" class="form-control" name="unit_price">
+                          </td>
+                          <td>${{ item.unit_price }}</td>
+                          <td>$0.00</td>
+                          <td>${{ item.total_price }}</td>
+                          <td><input type="submit" name="cart_update" class="form-control" value="update"></td>
+                          <td><a href="{% url 'cart_remove' item.product.pk %}"><i class="fa fa-trash-o"></i></a></td>
+                        </tr>
+                        {% endfor %}
+                		</form>
+                      </tbody>
+                      <tfoot>
+                        <tr>
+                          <th colspan="5">Total</th>
+                          <th colspan="2">${{ cart.summary }}</th>
+                        </tr>
+                      </tfoot>
+                    </table>
+                  </div>
+                  <div class="box-footer d-flex justify-content-between align-items-center">
+                    <div class="left-col"><a href="{% url 'shop' 'all' %}" class="btn btn-secondary mt-0"><i class="fa fa-chevron-left"></i> Continue shopping</a></div>
+                    <div class="right-col">
+                    	<div class="left-col"><a href="{% url 'checkout' %}" class="btn btn-secondary mt-0"><i class="fa fa-chevron-right"></i> Check out!</a></div>
+                    </div>
+                  </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-3 col-md-6">
+                  <div class="box text-uppercase mt-0 mb-small">
+                    <h3>You may also like these products</h3>
+                  </div>
+                </div>
+                {% for product in random_products %}
+                <div class="col-lg-3 col-md-6">
+                  <div class="product">
+                    <div class="image"><a href="{% url 'product_detail' product.pk %}"><img src="{{ product.image.url }}" alt="" class="img-fluid image1"></a></div>
+                    <div class="text">
+                      <h3 class="h5"><a href="{% url 'product_detail' product.pk %}">{{ product.name }}</a></h3>
+                      <p class="price">${{ product.price }}</p>
+                    </div>
+                  </div>
+                </div>
+                {% endfor %}
+              </div>
+            </div>
+            <div class="col-lg-3">
+              <div id="order-summary" class="box mt-0 mb-4 p-0">
+                <div class="box-header mt-0">
+                  <h3>Order summary</h3>
+                </div>
+                <p class="text-muted">Shipping and additional costs are calculated based on the values you have entered.</p>
+                <div class="table-responsive">
+                  <table class="table">
+                    <tbody>
+                      <tr>
+                        <td>Order subtotal</td>
+                        <th>${{ cart.summary }}</th>
+                      </tr>
+                      <tr>
+                        <td>Shipping and handling</td>
+                        <th>$10.00</th>
+                      </tr>
+                      <tr>
+                        <td>Tax</td>
+                        <th>$0.00</th>
+                      </tr>
+                      <tr class="total">
+                        <td>Total</td>
+                        {% if cart.summary > 0 %}
+                        <th>${{ cart.summary|add:10.00 }}</th>
+                        {% else %}
+                        <th>${{ cart.summary }}</th>
+                        {% endif %}
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div class="box box mt-0 mb-4 p-0">
+                <div class="box-header mt-0">
+                  <h4>Coupon code</h4>
+                </div>
+                <p class="text-muted">If you have a coupon code, please enter it in the box below.</p>
+                <form>
+                  <div class="input-group">
+                    <input type="text" class="form-control"><span class="input-group-btn">
+                      <button type="button" class="btn btn-template-main"><i class="fa fa-gift"></i></button></span>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+{% endblock %}

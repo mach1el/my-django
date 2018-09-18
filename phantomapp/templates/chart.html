@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block content %}
+ <div id="heading-breadcrumbs">
+	<div class="container">
+		<div class="row d-flex align-items-center flex-wrap">
+			<div class="col-md-7">
+				<h1 class="h2">Chart</h1>
+            </div>
+            <div class="col-md-5">
+              <ul class="breadcrumb d-flex justify-content-end">
+                <li class="breadcrumb-item"><a href="{% url 'index' %}">Home</a></li>
+                <li class="breadcrumb-item active">Chart</li>
+              </ul>
+            </div>
+		</div>
+	</div>
+</div>
+<div id="content">
+	<div class="container">
+		<div class="container-table-cart pos-relative">
+			<div class="wrap-table-shopping-cart bgwhite">
+				<div id="container" style="min-width: 310px; height: 400px; max-width: 800px; margin: 0 auto">
+					<section class="bar">
+						<div class="row">
+							<div class="col-lg-12">
+								<script>
+									Highcharts.chart('container',{{ chart|safe }})
+								</script>
+							</div>
+						</div>
+					</section>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-8">
+              <section class="bar">
+				<form method="POST">
+					{% csrf_token %}
+					<input type="submit" value="Generate Excel File" class="btn btn-primary">
+				</form>
+				{% if result %}
+					<h4 style="color: #38a7bb;">{{ result }}</h4>
+				{% endif %}
+			  </section>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}

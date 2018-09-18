@@ -1,0 +1,102 @@
+ {% extends 'base.html' %}
+ {% block content %}
+       <div id="heading-breadcrumbs">
+        <div class="container">
+          <div class="row d-flex align-items-center flex-wrap">
+            <div class="col-md-7">
+              <h1 class="h2">New Account / Sign In</h1>
+            </div>
+            <div class="col-md-5">
+              <ul class="breadcrumb d-flex justify-content-end">
+                <li class="breadcrumb-item"><a href="{% url 'index' %}">Home</a></li>
+                <li class="breadcrumb-item active">New Account / Sign In</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="content">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="box">
+                <h2 class="text-uppercase">New account</h2>
+                <p class="lead">Not our registered customer yet?</p>
+                <p>With registration with us new world of fashion, fantastic discounts and much more opens to you! The whole process will not take you more than a minute!</p>
+                <p class="text-muted">If you have any questions, please feel free to <a href="contact.html">contact us</a>, our customer service center is working for you 24/7.</p>
+                <hr>
+                <form action="{% url 'register' %}" method="POST" name="register" autocomplete="off">
+                  {% csrf_token %}
+                  {{ register_form.non_field_errors }}
+                   <div class="form-group">
+                    <label for="ememail">Email</label>
+                    <input id="ememail" type="text" class="form-control" name="email">
+                    {{ register_form.email.errors}}
+                  </div>
+                  <div class="form-group">
+                    <label for="first_name">First Name</label>
+                    <input id="first_name" type="text" class="form-control" name="first_name">
+                    {{ register_form.first_name.errors}}
+                  </div>
+                  <div class="form-group">
+                    <label for="last_name">Last Name</label>
+                    <input id="last_name" type="text" class="form-control" name="last_name">
+                    {{ register_form.last_name.errors}}
+                  </div>
+                  <div class="form-group">
+                    <label for="usernmae">Username</label>
+                    <input id="username" type="text" class="form-control" name="username">
+                    {{ register_form.user_name.errors}}
+                  </div>
+                  <div class="form-group">
+                    <label for="password1">Password</label>
+                    <input id="password1" type="password" class="form-control" name="password1">
+                    {{ register_form.password1.errors}}
+                  </div>
+                  <div class="form-group">
+                    <label for="password2">Verify</label>
+                    <input id="password2" type="password" class="form-control" name="password2">
+                    {{ register_form.password2.errors}}
+                  </div>
+                  <div class="text-center">
+                    <button type="submit" class="btn btn-template-outlined" name="register"><i class="fa fa-user-md"></i> Register</button>
+                  </div>
+                </form>
+              </div>
+              <ul>
+                  {% for message in messages %}
+                    <li class="{{ message.tags }}">
+                    {% if 'safe' in message.tags %}
+                      <h3>{{ message|safe }}</h3>
+                    {% else %}
+                      <h3>{{ message }}</h3>
+                    {% endif %}
+                    </li>
+                  {% endfor %}
+              </ul>
+            </div>
+            <div class="col-lg-6">
+              <div class="box">
+                <h2 class="text-uppercase">Login</h2>
+                <p class="lead">Already our customer?</p>
+                <p class="text-muted">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
+                <hr>
+                <form action="customer-orders.html" method="get">
+                  <div class="form-group">
+                    <label for="username">Username</label>
+                    <input id="username" type="text" class="form-control" name="username">
+                  </div>
+                  <div class="form-group">
+                    <label for="password">Password</label>
+                    <input id="password" type="password" class="form-control" name="password">
+                  </div>
+                  <div class="text-center">
+                    <button type="submit" class="btn btn-template-outlined"><i class="fa fa-sign-in"></i> Log in</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+{% endblock %}

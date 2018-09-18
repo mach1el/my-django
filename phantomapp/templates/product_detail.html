@@ -1,0 +1,153 @@
+ {% extends 'base.html' %}
+ {% load staticfiles %}
+ {% block content %}
+       <div id="heading-breadcrumbs">
+        <div class="container">
+          <div class="row d-flex align-items-center flex-wrap">
+            <div class="col-md-7">
+              <h1 class="h2">White Blouse Armani</h1>
+            </div>
+            <div class="col-md-5">
+              <ul class="breadcrumb d-flex justify-content-end">
+                <li class="breadcrumb-item"><a href="{% url 'index' %}">Home</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'shop' 'all' %}">Shop</a></li>
+                <li class="breadcrumb-item active">{{ product.name }}</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="content">
+        <div class="container">
+          <div class="row bar">
+            <!-- LEFT COLUMN _________________________________________________________-->
+            <div class="col-lg-9">
+              <p class="lead">We sell some stuffs which highly recommend by us.</p>
+              <p class="goToDescription"><a href="#details" class="scroll-to text-uppercase">Scroll to product details, material & care and sizing</a></p>
+              <div id="productMain" class="row">
+                <div class="col-sm-6">
+                  <div data-slider-id="1" class="owl-carousel shop-detail-carousel">
+                    <div> <img src="{{ product.image.url }}" alt="" class="img-fluid"></div>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="box">
+                    <form action="{% url 'cart_add' product.pk %}" method="POST" name="cart_add">
+                    	{% csrf_token %}
+                      <div class="quantity">
+                        <h3>Quantity</h3>
+                        <select class="bs-select" name="quantity">
+                          <option value="1">1</option>
+                          <option value="2">2</option>
+                          <option value="3">3</option>
+                          <option value="4">4</option>
+                        </select>
+                        <input type="hidden" value="{{ product.price }}" name="unit_price">
+                      </div>
+                      <p class="price">${{ product.price }}</p>
+                      <p class="text-center">
+                        <button type="submit" class="btn btn-template-outlined" name="cart_add"><i class="fa fa-shopping-cart"></i> Add to cart</button>
+                      </p>
+                    </form>
+                  </div>
+                </div>
+              </div>
+              <div id="details" class="box mb-4 mt-4">
+                <p></p>
+                <h4>Product details</h4>
+                <p>{{ product.description | linebreaks }}</p>
+              </div>
+              <div id="product-social" class="box social text-center mb-5 mt-5">
+                <h4 class="heading-light">Show it to your friends</h4>
+                <ul class="social list-inline">
+                  <li class="list-inline-item"><a href="#" data-animate-hover="pulse" class="external facebook"><i class="fa fa-facebook"></i></a></li>
+                  <li class="list-inline-item"><a href="#" data-animate-hover="pulse" class="external gplus"><i class="fa fa-google-plus"></i></a></li>
+                  <li class="list-inline-item"><a href="#" data-animate-hover="pulse" class="external twitter"><i class="fa fa-twitter"></i></a></li>
+                  <li class="list-inline-item"><a href="#" data-animate-hover="pulse" class="email"><i class="fa fa-envelope"></i></a></li>
+                </ul>
+              </div>
+              <div class="row">
+                <div class="col-lg-3 col-md-6">
+                  <div class="box text-uppercase mt-0 mb-small">
+                    <h3>You may also like these products</h3>
+                  </div>
+                </div>
+                {% for product in random_products %}
+                <div class="col-lg-3 col-md-6">
+                  <div class="product">
+                    <div class="image"><a href="#"><img src="{{ product.image.url }}" alt="" class="img-fluid image1"></a></div>
+                    <div class="text">
+                      <h3 class="h5"><a href="shop-detail.html">{{ product.name }}</a></h3>
+                      <p class="price">${{ product.price }}</p>
+                    </div>
+                  </div>
+                </div>
+                {% endfor %}
+              </div>
+              <div class="row">
+                <div class="col-lg-3 col-md-6">
+                  <div class="box text-uppercase mt-0 mb-small">
+                    <h3>Products viewed recently</h3>
+                  </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                  <div class="product">
+                    <div class="image"><a href="#"><img src="img/product3.jpg" alt="" class="img-fluid image1"></a></div>
+                    <div class="text">
+                      <h3 class="h5"><a href="shop-detail.html">Fur coat</a></h3>
+                      <p class="price">$143</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                  <div class="product">
+                    <div class="image"><a href="#"><img src="img/product1.jpg" alt="" class="img-fluid image1"></a></div>
+                    <div class="text">
+                      <h3 class="h5"><a href="shop-detail.html">Fur coat</a></h3>
+                      <p class="price">$143</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                  <div class="product">
+                    <div class="image"><a href="#"><img src="img/product2.jpg" alt="" class="img-fluid image1"></a></div>
+                    <div class="text">
+                      <h3 class="h5"><a href="shop-detail.html">Fur coat</a></h3>
+                      <p class="price">$143</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-3">
+              <!-- MENUS AND FILTERS-->
+              <div class="panel panel-default sidebar-menu">
+                <div class="panel-heading">
+                  <h3 class="h4 panel-title">Categories</h3>
+                </div>
+                <div class="panel-body">
+                  <ul class="nav nav-pills flex-column text-sm category-menu">
+					          <li class="nav-item"><a href="{% url 'shop' 'Books' %}" class="nav-link d-flex align-items-center justify-content-between"><span>Books </span><span class="badge badge-secondary">{{ books.count }}</span></a></li>
+                    <li class="nav-item"><a href="{% url 'shop' 'Laptops' %}" class="nav-link d-flex align-items-center justify-content-between"><span>Laptops </span><span class="badge badge-secondary"> {{ laptops.count }}</span></a></li>
+                    <li class="nav-item"><a href="{% url 'shop' 'NetworkDevices' %}" class="nav-link d-flex align-items-center justify-content-between"><span>Network Devices  </span><span class="badge badge-secondary">{{ network_devices.count }}</span></a></li>
+                    <li class="nav-item"><a href="{% url 'shop' 'Smartwatch' %}" class="nav-link d-flex align-items-center justify-content-between"><span>Smartwatch </span><span class="badge badge-secondary">{{ smartwatch.count }}</span></a></li>
+                  </ul>
+                </div>
+              </div>
+              <div class="panel panel-default sidebar-menu">
+                <div class="panel-heading d-flex align-items-center justify-content-between">
+                  <h3 class="h4 panel-title">Shoping Cart</h3><a href="{% url 'cart_detail' %}" class="btn btn-template-main"><i class="fa fa-chevron-right"></i></span></a>
+                </div>
+              </div>
+              <div class="panel panel-default sidebar-menu">
+                <div class="panel-heading d-flex align-items-center justify-content-between">
+                  <h3 class="h4 panel-title">Shop Checkout</h3><a href="{% url 'checkout' %}" class="btn btn-template-main"><i class="fa fa-chevron-right"></i></span></a>
+                </div>
+              </div>
+              <div class="banner"><a href="{% url 'shop' 'all' %}"><img src="{% static 'img/banner.jpg' %}" alt="sales 2014" class="img-fluid"></a></div>
+            </div>
+          </div>
+        </div>
+      </div>
+ 
+{% endblock %}

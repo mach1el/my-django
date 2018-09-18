@@ -1,0 +1,47 @@
+ {% extends 'base.html' %}
+ {% block content %}
+      <div id="heading-breadcrumbs">
+        <div class="container">
+          <div class="row d-flex align-items-center flex-wrap">
+            <div class="col-md-7">
+              <h1 class="h2">Sign In</h1>
+            </div>
+            <div class="col-md-5">
+              <ul class="breadcrumb d-flex justify-content-end">
+                <li class="breadcrumb-item"><a href="{% url 'index' %}">Home</a></li>
+                <li class="breadcrumb-item active">Sign In</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="content">
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-lg-6">
+              <div class="box">
+                <h2 class="text-uppercase">Login</h2>
+                <p class="lead">Not our customer? <a href="{% url 'register' %}"></a></p>
+                <p class="text-muted">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
+                <hr>
+                <form action="{% url 'login' %}" method="POST" name="login" autocomplete="off">
+                  {% csrf_token %}
+                  <div class="form-group">
+                    {{ form.non_field_errors }}
+                    <label for="email">Username</label>
+                    <input id="username" type="text" class="form-control" name="username">
+                  </div>
+                  <div class="form-group">
+                    <label for="password">Password</label>
+                    <input id="password" type="password" class="form-control" name="password">
+                  </div>
+                  <div class="text-center">
+                    <button type="submit" class="btn btn-template-outlined"><i class="fa fa-sign-in"></i> Log in</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+{% endblock %}

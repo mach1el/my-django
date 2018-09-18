@@ -1,0 +1,146 @@
+ {% extends 'base.html' %}
+ {% block content %}
+       <div id="heading-breadcrumbs">
+        <div class="container">
+          <div class="row d-flex align-items-center flex-wrap">
+            <div class="col-md-7">
+              <h1 class="h2">My Account</h1>
+            </div>
+            <div class="col-md-5">
+              <ul class="breadcrumb d-flex justify-content-end">
+                <li class="breadcrumb-item"><a href="{% url 'index' %}">Home</a></li>
+                <li class="breadcrumb-item active">My Account</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="content">
+        <div class="container">
+          <div class="row bar">
+            <div id="customer-account" class="col-lg-9 clearfix">
+              <p class="lead">Change your personal details or your password here.</p>
+              <p class="text-muted">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
+              {% if user.is_authenticated %} 
+              <div class="box mt-5">
+                <div class="heading">
+                  <h3 class="text-uppercase">Change password</h3>
+                </div>
+                <form>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="password_old">Old password</label>
+                        <input id="password_old" type="password" class="form-control">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="password_1">New password</label>
+                        <input id="password_1" type="password" class="form-control">
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="password_2">Retype new password</label>
+                        <input id="password_2" type="password" class="form-control">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="text-center">
+                    <button type="submit" class="btn btn-template-outlined"><i class="fa fa-save"></i> Save new password</button>
+                  </div>
+                </form>
+              </div>
+              <div class="bo3">
+                <div class="heading">
+                  <h3 class="text-uppercase">Personal details</h3>
+                </div>
+                <form action="{% url 'user_profile' user.username %}" method="POST" name="user_profile" autocomplete="off">
+                	{% csrf_token %}
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="first_name">Firstname</label>
+                        <input id="first_name" type="text" class="form-control" name="first_name" value="{{ user.first_name }}">
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="last_name">Lastname</label>
+                        <input id="last_name" type="text" class="form-control" name="last_name" value="{{ user.last_name }}">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="company">Company</label>
+                        <input id="company" type="text" class="form-control" name="company" value="{{ user_profile.company }}">
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="country">Country</label>
+                        <input id="country" type="text" class="form-control" name="country" value="{{ user_profile.country }}">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="state">State or Provide</label>
+                        <input id="state" type="text" class="form-control" name="state" value="{{ user_profile.state }}">
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="address">Address</label>
+                        <input id="address" type="text" class="form-control" name="address" value="{{ user_profile.address }}">
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="phone">Telephone</label>
+                        <input id="phone" type="text" class="form-control" name="telephone" value="{{ user_profile.telephone }}">
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="email">Email</label>
+                        <input id="email" type="email" class="form-control" name="email" value="{{ user.email }}">
+                      </div>
+                    </div>
+                    <div class="col-md-12 text-center">
+                      <button type="submit" class="btn btn-template-outlined" name="user_profile"><i class="fa fa-save"></i> Save changes</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+            <div class="col-lg-3 mt-4 mt-lg-0">
+              <!-- CUSTOMER MENU -->
+              <div class="panel panel-default sidebar-menu">
+                <div class="panel-heading">
+                  <h3 class="h4 panel-title">Customer section</h3>
+                </div>
+                <div class="panel-body">
+                  <ul class="nav nav-pills flex-column text-sm">
+                    <li class="nav-item"><a href="" class="nav-link active"><i class="fa fa-list"></i> My orders</a></li>
+                    <li class="nav-item"><a href="" class="nav-link"><i class="fa fa-heart"></i> My wishlist</a></li>
+                    <li class="nav-item"><a href="" class="nav-link"><i class="fa fa-user"></i> My account</a></li>
+                    <li class="nav-item"><a href="{% url 'logout' %}" class="nav-link"><i class="fa fa-sign-out"></i> Logout</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+        {% else %}
+        	<p> Your are not logged in,try to <a href="{% url 'login' %}">login</a> now!</p>
+        {% endif %}
+          </div>
+        </div>
+      </div>
+
+{% endblock %}

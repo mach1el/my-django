@@ -1,0 +1,86 @@
+ {% extends 'base.html' %}
+ {% load staticfiles %}
+ {% block content %}
+      <div id="heading-breadcrumbs">
+        <div class="container">
+          <div class="row d-flex align-items-center flex-wrap">
+            <div class="col-md-7">
+              <h1 class="h2">Shop</h1>
+            </div>
+            <div class="col-md-5">
+              <ul class="breadcrumb d-flex justify-content-end">
+                <li class="breadcrumb-item"><a href="{% url 'index' %}">Home</a></li>
+                <li class="breadcrumb-item active">Shop</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="content">
+        <div class="container">
+          <div class="row bar">
+            <div class="col-md-3">
+              <!-- MENUS AND FILTERS-->
+              <div class="panel panel-default sidebar-menu">
+                <div class="panel-heading">
+                  <h3 class="h4 panel-title">Categories</h3>
+                </div>
+                <div class="panel-body">
+                  <ul class="nav nav-pills flex-column text-sm category-menu">
+                    <li class="nav-item"><a href="{% url 'shop' 'Books' %}" class="nav-link d-flex align-items-center justify-content-between"><span>Books </span><span class="badge badge-secondary">{{ books.count }}</span></a></li>
+                    <li class="nav-item"><a href="{% url 'shop' 'Laptops' %}" class="nav-link d-flex align-items-center justify-content-between"><span>Laptops </span><span class="badge badge-secondary"> {{ laptops.count }}</span></a></li>
+                    <li class="nav-item"><a href="{% url 'shop' 'NetworkDevices' %}" class="nav-link d-flex align-items-center justify-content-between"><span>Network Devices  </span><span class="badge badge-secondary">{{ network_devices.count }}</span></a></li>
+                    <li class="nav-item"><a href="{% url 'shop' 'Smartwatch' %}" class="nav-link d-flex align-items-center justify-content-between"><span>Smartwatch </span><span class="badge badge-secondary">{{ smartwatch.count }}</span></a></li>
+                  </ul>
+                </div>
+              </div>
+              <div class="panel panel-default sidebar-menu">
+                <div class="panel-heading d-flex align-items-center justify-content-between">
+                  <h3 class="h4 panel-title">Shoping Cart</h3><a href="{% url 'cart_detail' %}" class="btn btn-template-main"><i class="fa fa-chevron-right"></i></span></a>
+                </div>
+              </div>
+              <div class="panel panel-default sidebar-menu">
+                <div class="panel-heading d-flex align-items-center justify-content-between">
+                  <h3 class="h4 panel-title">Shop Checkout</h3><a href="{% url 'checkout' %}" class="btn btn-template-main"><i class="fa fa-chevron-right"></i></span></a>
+                </div>
+              </div>
+              <div class="banner"><a href="{% url 'shop' 'all' %}"><img src="{% static 'img/banner.jpg' %}" alt="sales 2014" class="img-fluid"></a></div>
+            </div>
+            <div class="col-md-9">
+              <p class="text-muted lead">We sell some stuffs which highly recommend by us.</p>
+              <div class="row products products-big">
+              	{% for product in products %}
+                <div class="col-lg-4 col-md-6">
+                  <div class="product">
+                    <div class="image"><a href="{% url 'product_detail' product.pk %}"><img src="{{ product.image.url }}" alt="" class="img-fluid image1"></a></div>
+                    <div class="text">
+                      <h3 class="h5"><a href="{% url 'product_detail' product.pk %}">{{ product.name }}</a></h3>
+                      <p class="price">${{ product.price }}</p>
+                    </div>
+                  </div>
+                </div>
+                {% endfor %}
+              </div>
+              <div class="row">
+                <div class="col-md-12 banner mb-small"><a href="#"><img src="{% static 'img/banner2.jpg' %}" alt="" class="img-fluid"></a></div>
+              </div>
+              <div class="pages">
+                <p class="loadMore text-center"><a href="#" class="btn btn-template-outlined"><i class="fa fa-chevron-down"></i> Load more</a></p>
+                <nav aria-label="Page navigation example" class="d-flex justify-content-center">
+                  <ul class="pagination">
+                    <li class="page-item"><a href="#" class="page-link"> <i class="fa fa-angle-double-left"></i></a></li>
+                    <li class="page-item active"><a href="#" class="page-link">1</a></li>
+                    <li class="page-item"><a href="#" class="page-link">2</a></li>
+                    <li class="page-item"><a href="#" class="page-link">3</a></li>
+                    <li class="page-item"><a href="#" class="page-link">4</a></li>
+                    <li class="page-item"><a href="#" class="page-link">5</a></li>
+                    <li class="page-item"><a href="#" class="page-link"><i class="fa fa-angle-double-right"></i></a></li>
+                  </ul>
+                </nav>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+ }
+{% endblock %}
