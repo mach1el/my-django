@@ -1,7 +1,6 @@
 # My django project
 [![Python Version](https://img.shields.io/badge/python-3.6-brightgreen.svg)](https://python.org)
-[![PyPI - Django Version](https://img.shields.io/pypi/djversions/djangorestframework.svg?style=flat-square)
-](https://djangoproject.com)
+[![PyPI - Django Version](https://img.shields.io/pypi/djversions/djangorestframework.svg)](https://djangoproject.com)
 
 Web application built by django framework.[Visit my website](https://cotp.pythonanywhere.com/)
 
