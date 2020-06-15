@@ -13,16 +13,20 @@ There some techniques have been used in my project
   * The Admin
   * Session
   * Authentication
-  
+	
 ## Running project
-First,clone project to your computer
+Install require packages
+
+	pip install -r requirements.txt
+
+Clone project to your computer
 
 	git clone https://github.com/t7hm1/My-django-project.git
-		
-Second,migrate project
 
-	python3 migrate
+Migrate project
+
+	python3 manager.py migrate
 		
-Finally,run your server on your localhost
+Run your server on your localhost
 
 	python3 manager.py runserver
