@@ -25,8 +25,8 @@ Clone project to your computer
 
 Migrate project
 
-	python3 manager.py migrate
+	python3 manage.py migrate
 		
 Run your server on your localhost
 
-	python3 manager.py runserver
+	python3 manage.py runserver

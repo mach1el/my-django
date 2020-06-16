@@ -10,10 +10,10 @@ from django.shortcuts import render,redirect
 from django.template.loader import get_template
 from django.views.decorators.http import require_POST
 
-def error404(request):
+def error404(request,exception):
 	return render(request,"404.html")
 
-def error500(request):
+def error500(request,*args):
 	return render(request,"505.html")
 
 def index(request):
